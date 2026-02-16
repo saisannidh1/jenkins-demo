@@ -9,7 +9,10 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running tests...'
+                echo 'New change pushed!'
+
             }
+        
         }
     }
 }
