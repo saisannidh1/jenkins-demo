@@ -35,4 +35,13 @@ pipeline {
                 echo "Environment: ${ENVIRONMENT}"
             }
     }
+    stage('Use Secret') {
+            steps {
+                withCredentials([string(credentialsId: 'logindetails', variable: 'GITHUB_TOKEN')]) {
+                    echo "Token is injected securely"
+                }
+            }
+
+
+}
 }
