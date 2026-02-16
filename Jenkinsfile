@@ -33,11 +33,17 @@ pipeline {
         }
 
         stage('Use Secret') {
-            steps {
-                withCredentials([string(credentialsId: 'logindetails', variable: 'GITHUB_TOKEN')]) {
-                    echo "Token is injected securely"
-                }
-            }
+    steps {
+        withCredentials([usernamePassword(
+            credentialsId: 'logindetails',
+            usernameVariable: 'USERNAME',
+            passwordVariable: 'PASSWORD'
+        )]) {
+            echo "Username is $USERNAME"
+            // Never echo passwords in real pipelines
         }
+    }
+}
+
     }
 }
