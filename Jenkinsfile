@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Change') {
             steps {
-                echo 'New change pushed!'
+                echo 'old change pushed!'
 
             }
         
