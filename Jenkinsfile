@@ -1,13 +1,10 @@
 pipeline {
     agent { label 'windows' }
 
-
-    
     environment {
         APP_NAME = "MyApp"
         ENVIRONMENT = "dev"
     }
-
 
     stages {
         stage('Build') {
@@ -15,33 +12,32 @@ pipeline {
                 echo 'Building the project...'
             }
         }
+
         stage('Test') {
             steps {
                 echo 'Running tests...'
-
             }
-        
         }
+
         stage('Change') {
             steps {
                 echo 'old change pushed!'
-
             }
-        
         }
+
         stage('Print Info') {
             steps {
                 echo "App Name: ${APP_NAME}"
                 echo "Environment: ${ENVIRONMENT}"
             }
-    }
-    stage('Use Secret') {
+        }
+
+        stage('Use Secret') {
             steps {
                 withCredentials([string(credentialsId: 'logindetails', variable: 'GITHUB_TOKEN')]) {
                     echo "Token is injected securely"
                 }
             }
-
-
-}
+        }
+    }
 }
