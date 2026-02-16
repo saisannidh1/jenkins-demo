@@ -1,5 +1,14 @@
 pipeline {
     agent { label 'windows' }
+
+
+    
+    environment {
+        APP_NAME = "MyApp"
+        ENVIRONMENT = "dev"
+    }
+
+
     stages {
         stage('Build') {
             steps {
@@ -20,5 +29,10 @@ pipeline {
             }
         
         }
+        stage('Print Info') {
+            steps {
+                echo "App Name: ${APP_NAME}"
+                echo "Environment: ${ENVIRONMENT}"
+            }
     }
 }
